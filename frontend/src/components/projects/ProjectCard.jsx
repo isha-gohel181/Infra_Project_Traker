@@ -45,7 +45,7 @@ const ProjectCard = ({ project }) => {
               {formatDate(project.startDate)}
             </div>
             <div className="flex items-center text-gray-600">
-              <DollarSign className="h-4 w-4 mr-2" />
+              {/* <DollarSign className="h-4 w-4 mr-2" /> */}
               {formatCurrency(project.budget)}
             </div>
             <div className="flex items-center text-gray-600">

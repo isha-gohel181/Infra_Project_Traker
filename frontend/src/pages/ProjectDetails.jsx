@@ -9,7 +9,8 @@ import { Button } from '../components/ui/Button';
 import { Progress } from '../components/ui/Progress';
 import { projectsAPI, engineersAPI, reportsAPI } from '../services/api';
 import { formatDate, formatCurrency, getStatusColor } from '../lib/utils';
-import { ArrowLeft, Plus, MapPin, Calendar, DollarSign, Users, Edit } from 'lucide-react';
+import { ArrowLeft, Plus, MapPin, Calendar, IndianRupee, Users, Edit } from 'lucide-react';
+import ProjectForm from '../components/projects/ProjectForm';
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -24,6 +25,7 @@ const ProjectDetails = () => {
   const [editingPhase, setEditingPhase] = useState(null);
   const [showAssignModal, setShowAssignModal] = useState(false);
   const [selectedPhase, setSelectedPhase] = useState(null);
+  const [showProjectForm, setShowProjectForm] = useState(false);
 
   useEffect(() => {
     fetchProjectData();
@@ -71,6 +73,17 @@ const ProjectDetails = () => {
     } catch (err) {
       console.error('Error updating phase:', err);
       setError('Failed to update phase. Please try again.');
+    }
+  };
+
+  const handleUpdateProject = async (updatedData) => {
+    try {
+     const response = await projectsAPI.update(id, updatedData);
+      setProject(response.data);
+      setShowProjectForm(false);
+    } catch (err) {
+      console.error('Error updating project:', err);
+      setError('Failed to update project. Please try again.');
     }
   };
 
@@ -150,7 +163,7 @@ const ProjectDetails = () => {
               <h1 className="text-3xl font-bold text-gray-900">{project.name}</h1>
               <p className="mt-2 text-gray-600 max-w-3xl">{project.description}</p>
             </div>
-            <Button variant="outline">
+            <Button variant="outline" onClick={() => setShowProjectForm(true)}>
               <Edit className="h-4 w-4 mr-2" />
               Edit Project
             </Button>
@@ -266,7 +279,7 @@ const ProjectDetails = () => {
                 </div>
                 
                 <div className="flex items-center text-sm">
-                  <DollarSign className="h-4 w-4 mr-2 text-gray-400" />
+                  <IndianRupee className="h-4 w-4 mr-2 text-gray-400" />
                   <span className="text-gray-600">Budget:</span>
                   <span className="ml-2 font-medium">{formatCurrency(project.budget)}</span>
                 </div>
@@ -314,6 +327,17 @@ const ProjectDetails = () => {
               setEditingPhase(null);
             }}
           />
+        )}
+        
+        {/* Project Edit Form Modal */}
+        {showProjectForm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <ProjectForm
+              project={project}
+              onSubmit={handleUpdateProject}
+              onCancel={() => setShowProjectForm(false)}
+            />
+          </div>
         )}
 
         {/* Engineer Assignment Modal */}
