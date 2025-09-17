@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import ProjectCard from '../components/projects/ProjectCard';
 import ProjectForm from '../components/projects/ProjectForm';
-import { Button } from '../components/ui/Button';
+import { Button } from '../components/ui/button';
 import { projectsAPI } from '../services/api';
 import { Plus, Search, Filter } from 'lucide-react';
 
