@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import ReportCard from '../components/reports/ReportCard';
 import ReportForm from '../components/reports/ReportForm'; // Add this import
-import { Button } from '../components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { reportsAPI, projectsAPI, engineersAPI } from '../services/api'; // Add engineersAPI
 import { Plus, Search, Filter, FileText } from 'lucide-react';
 
