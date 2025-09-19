@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Building, Clock, CheckCircle, AlertTriangle } from 'lucide-react';
 
 const ProjectStats = ({ projects }) => {
