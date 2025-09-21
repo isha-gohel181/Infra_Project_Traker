@@ -15,11 +15,12 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: 'https://infra-tracker-three.vercel.app', // your frontend URL
+  origin: ['https://infra-tracker-three.vercel.app', 'http://localhost:5173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
